@@ -1,0 +1,55 @@
+\hypertarget{class_d_g_tools_1_1_database_1_1_schema_builder}{}\section{D\+G\+Tools.\+Database.\+Schema\+Builder Class Reference}
+\label{class_d_g_tools_1_1_database_1_1_schema_builder}\index{DGTools.Database.SchemaBuilder@{DGTools.Database.SchemaBuilder}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_d_g_tools_1_1_database_1_1_schema_builder_ab71c723b87f2c6176379c2b8176d66c9}\label{class_d_g_tools_1_1_database_1_1_schema_builder_ab71c723b87f2c6176379c2b8176d66c9}} 
+{\bfseries Schema\+Builder} (\mbox{\hyperlink{class_d_g_tools_1_1_database_1_1_database_settings}{Database\+Settings}} settings)
+\item 
+\mbox{\Hypertarget{class_d_g_tools_1_1_database_1_1_schema_builder_a99ed1ba9ff89ffaabb1c4bb5453fe36a}\label{class_d_g_tools_1_1_database_1_1_schema_builder_a99ed1ba9ff89ffaabb1c4bb5453fe36a}} 
+void {\bfseries Reload\+Versions} ()
+\item 
+\mbox{\Hypertarget{class_d_g_tools_1_1_database_1_1_schema_builder_a7e6a8175d8a4ca81524ead3c6dc3df0e}\label{class_d_g_tools_1_1_database_1_1_schema_builder_a7e6a8175d8a4ca81524ead3c6dc3df0e}} 
+void {\bfseries Load\+Schema} (string version)
+\item 
+\mbox{\Hypertarget{class_d_g_tools_1_1_database_1_1_schema_builder_a1e052d4830fc7398cda6d8e1fe0727eb}\label{class_d_g_tools_1_1_database_1_1_schema_builder_a1e052d4830fc7398cda6d8e1fe0727eb}} 
+void {\bfseries Create\+Schema\+For\+Current\+Version} (string from\+Version=null)
+\item 
+\mbox{\Hypertarget{class_d_g_tools_1_1_database_1_1_schema_builder_ae532e3d09620f780e3465c32469bca6b}\label{class_d_g_tools_1_1_database_1_1_schema_builder_ae532e3d09620f780e3465c32469bca6b}} 
+J\+Object {\bfseries Load\+Version} (string version)
+\item 
+\mbox{\Hypertarget{class_d_g_tools_1_1_database_1_1_schema_builder_a83091fabafe2427685c27ab788ae5a9f}\label{class_d_g_tools_1_1_database_1_1_schema_builder_a83091fabafe2427685c27ab788ae5a9f}} 
+string {\bfseries Get\+Path\+For\+Version} (string version)
+\item 
+\mbox{\Hypertarget{class_d_g_tools_1_1_database_1_1_schema_builder_a834e162ea0fe2695f961339849d68faf}\label{class_d_g_tools_1_1_database_1_1_schema_builder_a834e162ea0fe2695f961339849d68faf}} 
+bool {\bfseries Is\+Version\+Exists} (string version)
+\item 
+\mbox{\Hypertarget{class_d_g_tools_1_1_database_1_1_schema_builder_a2045ed98663da0b8ee916312a54be068}\label{class_d_g_tools_1_1_database_1_1_schema_builder_a2045ed98663da0b8ee916312a54be068}} 
+void {\bfseries Save\+Active\+Schema} ()
+\item 
+\mbox{\Hypertarget{class_d_g_tools_1_1_database_1_1_schema_builder_aae993a4c832fb183ab8f4cf97c031e8b}\label{class_d_g_tools_1_1_database_1_1_schema_builder_aae993a4c832fb183ab8f4cf97c031e8b}} 
+void {\bfseries Save\+Schema} (\mbox{\hyperlink{class_d_g_tools_1_1_database_1_1_schema}{Schema}} schema)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_d_g_tools_1_1_database_1_1_schema_builder_a690f6c686acdd1d98784cce924000ffb}\label{class_d_g_tools_1_1_database_1_1_schema_builder_a690f6c686acdd1d98784cce924000ffb}} 
+readonly string {\bfseries path}
+\item 
+\mbox{\Hypertarget{class_d_g_tools_1_1_database_1_1_schema_builder_aae1bc924e123ac080407e9c482edc392}\label{class_d_g_tools_1_1_database_1_1_schema_builder_aae1bc924e123ac080407e9c482edc392}} 
+string {\bfseries last\+Version} =$>$ available\+Versions.\+Max()
+\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_d_g_tools_1_1_database_1_1_schema_builder_ab65dce527d4aa79a911885269e9d123c}\label{class_d_g_tools_1_1_database_1_1_schema_builder_ab65dce527d4aa79a911885269e9d123c}} 
+List$<$ string $>$ {\bfseries available\+Versions}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+\mbox{\Hypertarget{class_d_g_tools_1_1_database_1_1_schema_builder_a160a44bb850795d73523f445d1005cbc}\label{class_d_g_tools_1_1_database_1_1_schema_builder_a160a44bb850795d73523f445d1005cbc}} 
+\mbox{\hyperlink{class_d_g_tools_1_1_database_1_1_schema}{Schema}} {\bfseries active\+Schema}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Runtime/\+Scripts/\+Models/Schema\+Builder.\+cs\end{DoxyCompactItemize}

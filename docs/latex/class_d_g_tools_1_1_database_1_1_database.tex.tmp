@@ -1,0 +1,169 @@
+\hypertarget{class_d_g_tools_1_1_database_1_1_database}{}\section{D\+G\+Tools.\+Database.\+Database Class Reference}
+\label{class_d_g_tools_1_1_database_1_1_database}\index{DGTools.Database.Database@{DGTools.Database.Database}}
+
+
+Inheritance diagram for D\+G\+Tools.\+Database.\+Database\+:
+% FIG 0
+
+
+Collaboration diagram for D\+G\+Tools.\+Database.\+Database\+:
+% FIG 1
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_d_g_tools_1_1_database_1_1_table}{Table}}$<$ Titem $>$ \mbox{\hyperlink{class_d_g_tools_1_1_database_1_1_database_a6330afacdc6befc678ddd533d65dcc58}{Get\+Table$<$ Titem $>$}} ()
+\begin{DoxyCompactList}\small\item\em Gets a \mbox{\hyperlink{class_d_g_tools_1_1_database_1_1_table}{Table}} for a given Type that implements \mbox{\hyperlink{interface_d_g_tools_1_1_database_1_1_i_databasable}{I\+Databasable}} \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_d_g_tools_1_1_database_1_1_table}{Table}} \mbox{\hyperlink{class_d_g_tools_1_1_database_1_1_database_add6fa2ba3fa89bd846641459c639b01d}{Get\+Table}} (Type table\+Type)
+\begin{DoxyCompactList}\small\item\em Gets a \mbox{\hyperlink{class_d_g_tools_1_1_database_1_1_table}{Table}} for a given Type \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_d_g_tools_1_1_database_1_1_database_ad57dd312a7b864f81089be1ac7c1e04c}{Save}} ()
+\begin{DoxyCompactList}\small\item\em Save the database settings \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{class_d_g_tools_1_1_database_1_1_database_a150c2943f295e48fa4b7230a78e95bdf}{Load}} (Unity\+Action on\+Load\+Done=null)
+\begin{DoxyCompactList}\small\item\em Loads the database asynchronously and invokes {\itshape on\+Load\+Done}  when it\textquotesingle{}s done \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Unity\+Event \mbox{\hyperlink{class_d_g_tools_1_1_database_1_1_database_aaa9ed41af13eb8efdcdc0d5e0d1f9b16}{On\+Database\+Loaded}} = new Unity\+Event()
+\begin{DoxyCompactList}\small\item\em Is called when database is loaded \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static string \mbox{\hyperlink{class_d_g_tools_1_1_database_1_1_database_a877100d35c33e64c6c84f4d419a82c7f}{database\+Folder\+Path}} =$>$ Path.\+Combine(Path\+Utilities.\+absolute\+Path, active.\+settings.\+database\+Folder\+Path)
+\begin{DoxyCompactList}\small\item\em The full absolute path to the database folder \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{class_d_g_tools_1_1_database_1_1_database_settings}{Database\+Settings}} \mbox{\hyperlink{class_d_g_tools_1_1_database_1_1_database_a32cd30f6c2d3911929b224ebed33be40}{Settings}} =$>$ active.\+settings
+\begin{DoxyCompactList}\small\item\em The \mbox{\hyperlink{class_d_g_tools_1_1_database_1_1_database_a877100d35c33e64c6c84f4d419a82c7f}{database\+Folder\+Path}} of the active \mbox{\hyperlink{class_d_g_tools_1_1_database_1_1_database}{Database}} \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_d_g_tools_1_1_database_1_1_database_a8a09c9a6f39f0d8509642e02db08ff86}\label{class_d_g_tools_1_1_database_1_1_database_a8a09c9a6f39f0d8509642e02db08ff86}} 
+virtual J\+Object {\bfseries Serialize} ()
+\item 
+\mbox{\Hypertarget{class_d_g_tools_1_1_database_1_1_database_a276ac27eeb05ee573ed0ae5778e09187}\label{class_d_g_tools_1_1_database_1_1_database_a276ac27eeb05ee573ed0ae5778e09187}} 
+virtual void {\bfseries Unserialize} (J\+Object datas)
+\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+static bool \mbox{\hyperlink{class_d_g_tools_1_1_database_1_1_database_a334e6b075148a36a050e3082512ec111}{is\+Loaded}} = false\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em True if database is loaded \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_d_g_tools_1_1_database_1_1_database_add6fa2ba3fa89bd846641459c639b01d}\label{class_d_g_tools_1_1_database_1_1_database_add6fa2ba3fa89bd846641459c639b01d}} 
+\index{DGTools.Database.Database@{DGTools.Database.Database}!GetTable@{GetTable}}
+\index{GetTable@{GetTable}!DGTools.Database.Database@{DGTools.Database.Database}}
+\subsubsection{\texorpdfstring{GetTable()}{GetTable()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_d_g_tools_1_1_database_1_1_table}{Table}} D\+G\+Tools.\+Database.\+Database.\+Get\+Table (\begin{DoxyParamCaption}\item[{Type}]{table\+Type }\end{DoxyParamCaption})}
+
+
+
+Gets a \mbox{\hyperlink{class_d_g_tools_1_1_database_1_1_table}{Table}} for a given Type 
+
+
+\begin{DoxyParams}{Parameters}
+{\em table\+Type} & The generic type of the desired table\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A \mbox{\hyperlink{class_d_g_tools_1_1_database_1_1_table}{Table}} with Table.\+item\+Type == {\itshape table\+Type} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_d_g_tools_1_1_database_1_1_database_a6330afacdc6befc678ddd533d65dcc58}\label{class_d_g_tools_1_1_database_1_1_database_a6330afacdc6befc678ddd533d65dcc58}} 
+\index{DGTools.Database.Database@{DGTools.Database.Database}!GetTable$<$ Titem $>$@{GetTable$<$ Titem $>$}}
+\index{GetTable$<$ Titem $>$@{GetTable$<$ Titem $>$}!DGTools.Database.Database@{DGTools.Database.Database}}
+\subsubsection{\texorpdfstring{GetTable$<$ Titem $>$()}{GetTable< Titem >()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_d_g_tools_1_1_database_1_1_table}{Table}}$<$Titem$>$ \mbox{\hyperlink{class_d_g_tools_1_1_database_1_1_database_add6fa2ba3fa89bd846641459c639b01d}{D\+G\+Tools.\+Database.\+Database.\+Get\+Table}}$<$ Titem $>$ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets a \mbox{\hyperlink{class_d_g_tools_1_1_database_1_1_table}{Table}} for a given Type that implements \mbox{\hyperlink{interface_d_g_tools_1_1_database_1_1_i_databasable}{I\+Databasable}} 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Titem} & Type of an item that implements \mbox{\hyperlink{interface_d_g_tools_1_1_database_1_1_i_databasable}{I\+Databasable}}\\
+\hline
+\end{DoxyTemplParams}
+\begin{DoxyReturn}{Returns}
+A \mbox{\hyperlink{class_d_g_tools_1_1_database_1_1_table}{Table}} of type {\itshape Titem} 
+\end{DoxyReturn}
+\begin{Desc}
+\item[Type Constraints]\begin{description}
+\item[{\em Titem} : {\em I\+Databasable}]\item[{\em Titem} : {\em new()}]\end{description}
+\end{Desc}
+\mbox{\Hypertarget{class_d_g_tools_1_1_database_1_1_database_a150c2943f295e48fa4b7230a78e95bdf}\label{class_d_g_tools_1_1_database_1_1_database_a150c2943f295e48fa4b7230a78e95bdf}} 
+\index{DGTools.Database.Database@{DGTools.Database.Database}!Load@{Load}}
+\index{Load@{Load}!DGTools.Database.Database@{DGTools.Database.Database}}
+\subsubsection{\texorpdfstring{Load()}{Load()}}
+{\footnotesize\ttfamily static void D\+G\+Tools.\+Database.\+Database.\+Load (\begin{DoxyParamCaption}\item[{Unity\+Action}]{on\+Load\+Done = {\ttfamily null} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Loads the database asynchronously and invokes {\itshape on\+Load\+Done}  when it\textquotesingle{}s done 
+
+
+\begin{DoxyParams}{Parameters}
+{\em on\+Load\+Done} & The Unity\+Action to invoke when database is loaded\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_d_g_tools_1_1_database_1_1_database_ad57dd312a7b864f81089be1ac7c1e04c}\label{class_d_g_tools_1_1_database_1_1_database_ad57dd312a7b864f81089be1ac7c1e04c}} 
+\index{DGTools.Database.Database@{DGTools.Database.Database}!Save@{Save}}
+\index{Save@{Save}!DGTools.Database.Database@{DGTools.Database.Database}}
+\subsubsection{\texorpdfstring{Save()}{Save()}}
+{\footnotesize\ttfamily void D\+G\+Tools.\+Database.\+Database.\+Save (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Save the database settings 
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{class_d_g_tools_1_1_database_1_1_database_a877100d35c33e64c6c84f4d419a82c7f}\label{class_d_g_tools_1_1_database_1_1_database_a877100d35c33e64c6c84f4d419a82c7f}} 
+\index{DGTools.Database.Database@{DGTools.Database.Database}!databaseFolderPath@{databaseFolderPath}}
+\index{databaseFolderPath@{databaseFolderPath}!DGTools.Database.Database@{DGTools.Database.Database}}
+\subsubsection{\texorpdfstring{databaseFolderPath}{databaseFolderPath}}
+{\footnotesize\ttfamily string D\+G\+Tools.\+Database.\+Database.\+database\+Folder\+Path =$>$ Path.\+Combine(Path\+Utilities.\+absolute\+Path, active.\+settings.\+database\+Folder\+Path)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+The full absolute path to the database folder 
+
+\mbox{\Hypertarget{class_d_g_tools_1_1_database_1_1_database_aaa9ed41af13eb8efdcdc0d5e0d1f9b16}\label{class_d_g_tools_1_1_database_1_1_database_aaa9ed41af13eb8efdcdc0d5e0d1f9b16}} 
+\index{DGTools.Database.Database@{DGTools.Database.Database}!OnDatabaseLoaded@{OnDatabaseLoaded}}
+\index{OnDatabaseLoaded@{OnDatabaseLoaded}!DGTools.Database.Database@{DGTools.Database.Database}}
+\subsubsection{\texorpdfstring{OnDatabaseLoaded}{OnDatabaseLoaded}}
+{\footnotesize\ttfamily Unity\+Event D\+G\+Tools.\+Database.\+Database.\+On\+Database\+Loaded = new Unity\+Event()}
+
+
+
+Is called when database is loaded 
+
+\mbox{\Hypertarget{class_d_g_tools_1_1_database_1_1_database_a32cd30f6c2d3911929b224ebed33be40}\label{class_d_g_tools_1_1_database_1_1_database_a32cd30f6c2d3911929b224ebed33be40}} 
+\index{DGTools.Database.Database@{DGTools.Database.Database}!Settings@{Settings}}
+\index{Settings@{Settings}!DGTools.Database.Database@{DGTools.Database.Database}}
+\subsubsection{\texorpdfstring{Settings}{Settings}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_d_g_tools_1_1_database_1_1_database_settings}{Database\+Settings}} D\+G\+Tools.\+Database.\+Database.\+Settings =$>$ active.\+settings\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+The \mbox{\hyperlink{class_d_g_tools_1_1_database_1_1_database_a877100d35c33e64c6c84f4d419a82c7f}{database\+Folder\+Path}} of the active \mbox{\hyperlink{class_d_g_tools_1_1_database_1_1_database}{Database}} 
+
+
+
+\subsection{Property Documentation}
+\mbox{\Hypertarget{class_d_g_tools_1_1_database_1_1_database_a334e6b075148a36a050e3082512ec111}\label{class_d_g_tools_1_1_database_1_1_database_a334e6b075148a36a050e3082512ec111}} 
+\index{DGTools.Database.Database@{DGTools.Database.Database}!isLoaded@{isLoaded}}
+\index{isLoaded@{isLoaded}!DGTools.Database.Database@{DGTools.Database.Database}}
+\subsubsection{\texorpdfstring{isLoaded}{isLoaded}}
+{\footnotesize\ttfamily bool D\+G\+Tools.\+Database.\+Database.\+is\+Loaded = false\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [get]}}
+
+
+
+True if database is loaded 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Runtime/\+Scripts/\+Models/Database.\+cs\end{DoxyCompactItemize}

@@ -1,0 +1,14 @@
+digraph "DGTools.Database.GetRequest&lt; Tdata &gt;"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node0 [label="DGTools.Database.GetRequest\l\< Tdata \>",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node0 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 [label="Request\< Tdata \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_d_g_tools_1_1_database_1_1_request.html",tooltip=" "];
+  Node0 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="DGTools::Database::\lGetManyRequest\< Tdata \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_d_g_tools_1_1_database_1_1_get_many_request.html",tooltip=" "];
+  Node0 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="DGTools::Database::\lGetOneRequest\< Tdata \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_d_g_tools_1_1_database_1_1_get_one_request.html",tooltip=" "];
+}

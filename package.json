@@ -1,0 +1,11 @@
+{
+  "name": "com.dgtools.database",
+  "displayName": "DGTools Database",
+  "version": "0.0.1",
+  "dependencies": {
+    "com.dgtools.core": ""
+  },
+  "description": "Database manager for Unity",
+  "type": "tool",
+  "hideInEditor": false
+}
