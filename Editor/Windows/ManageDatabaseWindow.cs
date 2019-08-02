@@ -192,14 +192,32 @@ namespace DGTools.Database.Editor
                 GUILayout.Label("Tables", skin.FindStyle("Title"));
 
                 leftscrollPosition = GUILayout.BeginScrollView(leftscrollPosition);
-                foreach (TableSchema schema in schemaBuilder.activeSchema.GetTableSchemas())
+                if (schemaBuilder.activeSchema == null)
                 {
-                    if (GUILayout.Button(schema.itemType.ToString()))
+                    GUILayout.Label("No Schema found", skin.FindStyle("Italic"));
+                }
+                else if (schemaBuilder.activeSchema.GetTableSchemas().Count == 0)
+                {
+                    GUILayout.Label("No Table found", skin.FindStyle("Italic"));
+                }
+                else {
+                    foreach (TableSchema schema in schemaBuilder.activeSchema.GetTableSchemas())
                     {
-                        selectedTable = schema;
-                        rightscrollPosition = Vector2.zero;
+                        if (schema.isValid)
+                        {
+                            if (GUILayout.Button(schema.itemType.ToString()))
+                            {
+                                selectedTable = schema;
+                                rightscrollPosition = Vector2.zero;
+                            }
+                        }
+                        else {
+                            schemaBuilder.activeSchema.RemoveTableSchema(schema);
+                        }
+                        
                     }
                 }
+
                 GUILayout.EndScrollView();
                 GUILayout.EndVertical();
 
@@ -386,11 +404,11 @@ namespace DGTools.Database.Editor
             }
             else {
                 GUILayout.BeginHorizontal(GUILayout.ExpandWidth(false));
-                GUILayout.Button("ID", skin.FindStyle("ArrayHeaders"), GUILayout.Width(gridCellsWidth));
+                GUILayout.Button("ID", skin.FindStyle("ArrayHeader"), GUILayout.Width(gridCellsWidth));
 
                 foreach (TableField field in exploredTable.fields) {
                     if (field.fieldName != "ID")
-                        GUILayout.Button(field.fieldName, skin.FindStyle("ArrayHeaders"), GUILayout.Width(gridCellsWidth));
+                        GUILayout.Button(field.fieldName, skin.FindStyle("ArrayHeader"), GUILayout.Width(gridCellsWidth));
                 }
                 GUILayout.EndHorizontal();
 

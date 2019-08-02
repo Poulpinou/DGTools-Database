@@ -14,6 +14,10 @@ namespace DGTools.Database
         [SerializeField] public List<TableField> fields;
         #endregion
 
+        #region Properties
+        public bool isValid { get; private set; } = false;
+        #endregion
+
         #region Constructors
         public TableSchema(Type type)
         {
@@ -51,21 +55,29 @@ namespace DGTools.Database
 
             if (!foundID)
                 throw new Exception(string.Format("{0} should implement <b>public int ID {get; set;}</b>", type));
+
+            isValid = true;
         }
 
         public TableSchema(JObject datas)
         {
-            itemType = Type.GetType((string)datas.SelectToken("itemType"));
-
-            JArray fieldsdatas = (JArray)datas.SelectToken("fields");
-            fields = new List<TableField>();
-            foreach (JObject field in fieldsdatas)
+            try
             {
-                fields.Add(new TableField(
-                    TypeUtilities.GetTypeFromString((string)field.SelectToken("fieldType")),
-                    (string)field.SelectToken("fieldName"),
-                    (bool)field.SelectToken("isProperty")
-                ));
+                itemType = Type.GetType((string)datas.SelectToken("itemType"));
+
+                JArray fieldsdatas = (JArray)datas.SelectToken("fields");
+                fields = new List<TableField>();
+                foreach (JObject field in fieldsdatas)
+                {
+                    fields.Add(new TableField(
+                        TypeUtilities.GetTypeFromString((string)field.SelectToken("fieldType")),
+                        (string)field.SelectToken("fieldName"),
+                        (bool)field.SelectToken("isProperty")
+                    ));
+                }
+            }
+            catch {
+                isValid = false;
             }
         }
         #endregion

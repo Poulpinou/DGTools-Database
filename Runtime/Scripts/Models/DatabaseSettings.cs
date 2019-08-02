@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
-using UnityEditor;
 using System.IO;
+
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 namespace DGTools.Database {
     public class DatabaseSettings : ScriptableObject
@@ -25,6 +28,8 @@ namespace DGTools.Database {
         #endregion
 
         #region Static Methods
+
+#if UNITY_EDITOR
         /// <summary>
         /// Creates setting at "Assets/<see cref="DIRECTORY_PATH"/>/<see cref="FILE_NAME"/>.asset"
         /// </summary>
@@ -43,6 +48,7 @@ namespace DGTools.Database {
 
             return asset;
         }
+#endif
 
         /// <summary>
         /// Creates all the files and foldres that the <see cref="Database"/> will need
