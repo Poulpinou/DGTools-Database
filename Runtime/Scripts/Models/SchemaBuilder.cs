@@ -28,7 +28,14 @@ namespace DGTools.Database
         #region Constructors
         public SchemaBuilder(DatabaseSettings settings)
         {
-            path = Path.Combine(PathUtilities.absolutePath, settings.databaseFolderPath, settings.schemasFolderName);
+            try
+            {
+                path = Path.Combine(PathUtilities.absolutePath, settings.databaseFolderPath, settings.schemasFolderName);
+            }
+            catch {
+                throw new Exception("Invalid path settings");
+            }
+            
             prefix = settings.schemaFilePrefix;
 
             if (!Directory.Exists(path))

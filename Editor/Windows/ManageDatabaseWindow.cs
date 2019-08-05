@@ -490,10 +490,20 @@ namespace DGTools.Database.Editor
             if (settings != null)
             {
                 if (schemaBuilder == null)
-                    schemaBuilder = new SchemaBuilder(settings);
-
-                if (GUILayout.Button("Schema")) activeWindow = WindowType.Schema;
-                if (GUILayout.Button("Explore")) activeWindow = WindowType.Explore;
+                {
+                    try
+                    {
+                        schemaBuilder = new SchemaBuilder(settings);
+                    }
+                    catch (Exception e)
+                    {
+                        log = e.Message;
+                    }
+                }
+                else {
+                    if (GUILayout.Button("Schema")) activeWindow = WindowType.Schema;
+                    if (GUILayout.Button("Explore")) activeWindow = WindowType.Explore;
+                }
             }
             GUILayout.EndHorizontal();
 
