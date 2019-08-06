@@ -49,6 +49,11 @@ namespace DGTools.Database
         /// The <see cref="databaseFolderPath"/> of the active <see cref="Database"/>
         /// </summary>
         public static DatabaseSettings Settings => active.settings;
+
+        /// <summary>
+        /// The current progress of loading, 1 = loaded
+        /// </summary>
+        public static float loadProgress { get; private set; }
         #endregion
 
         #region Static Methods
@@ -142,11 +147,15 @@ namespace DGTools.Database
             LoadSettings();
             LoadDatabaseFile();
 
+            loadProgress = 0.1f;
             yield return RunSchema();
             yield return RunLoadTables();
 
+            loadProgress = 1f;
+
             isLoaded = true;
-            onLoadDone.Invoke();
+            if(onLoadDone != null)
+                onLoadDone.Invoke();
             OnDatabaseLoaded.Invoke();
         }
 
@@ -168,6 +177,8 @@ namespace DGTools.Database
 
             currentVersion = schemaBuilder.activeSchema.version;
 
+            int schemasCount = schemaBuilder.activeSchema.GetTableSchemas().Count;
+
             foreach (TableSchema tableSchema in schemaBuilder.activeSchema.GetTableSchemas())
             {
                 if (Time.realtimeSinceStartup - startTime > settings.coroutinesMaxExecutionTime)
@@ -175,7 +186,7 @@ namespace DGTools.Database
                     yield return new WaitForEndOfFrame();
                     startTime = Time.realtimeSinceStartup;
                 }
-
+                
                 try
                 {
                     Table table = Table.Build(tableSchema);
@@ -185,6 +196,8 @@ namespace DGTools.Database
                 {
                     Debug.LogError(string.Format("Failed to load {0} table : {1}", tableSchema.itemType, e));
                 }
+
+                loadProgress += 0.4f / schemasCount;
             }
 
             Save();
@@ -196,6 +209,7 @@ namespace DGTools.Database
             {
                 table.LoadTable();
                 yield return null;
+                loadProgress += 0.4f / tables.Count;
             }
         }
         #endregion
