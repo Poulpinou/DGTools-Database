@@ -28,6 +28,7 @@ namespace DGTools.Database
                 throw new Exception(string.Format("{0} should have an empty constructor", type));
 
             itemType = type;
+
             fields = new List<TableField>();
 
             foreach (FieldInfo field in type.GetFields())
@@ -63,7 +64,11 @@ namespace DGTools.Database
         {
             try
             {
-                itemType = Type.GetType((string)datas.SelectToken("itemType"));
+                itemType = TypeUtilities.GetTypeFromString((string)datas.SelectToken("itemType"));
+
+                if (itemType == null) {
+                    throw new Exception(string.Format("Type {0} doesn't exist", (string)datas.SelectToken("itemType")));
+                }
 
                 JArray fieldsdatas = (JArray)datas.SelectToken("fields");
                 fields = new List<TableField>();
@@ -75,8 +80,11 @@ namespace DGTools.Database
                         (bool)field.SelectToken("isProperty")
                     ));
                 }
+
+                isValid = true;
             }
-            catch {
+            catch (Exception e){
+                Debug.Log(e.Message);
                 isValid = false;
             }
         }
