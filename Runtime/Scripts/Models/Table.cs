@@ -86,6 +86,10 @@ namespace DGTools.Database
             return datas.Count(d => (int)d["ID"] == ID) > 0;
         }
 
+        public bool IsUnique(string key, string value) {
+            return datas.Count(d => (string)d[key] == value) == 0;
+        }
+
         /// <summary>
         /// Saves tables datas
         /// </summary>
@@ -190,7 +194,8 @@ namespace DGTools.Database
 
             if (IDExists(item.ID))
             {
-                foreach (JToken toRemove in datas.Where(t => (int)t["ID"] == item.ID)) {
+                IEnumerable<JToken> datasToRemove = datas.Where(t => (int)t["ID"] == item.ID);
+                foreach (JToken toRemove in datasToRemove) {
                     datas.Remove(toRemove);
                 }
             }
