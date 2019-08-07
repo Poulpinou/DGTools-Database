@@ -194,7 +194,7 @@ namespace DGTools.Database
 
             if (IDExists(item.ID))
             {
-                IEnumerable<JToken> datasToRemove = datas.Where(t => (int)t["ID"] == item.ID);
+                JToken[] datasToRemove = datas.Where(t => (int)t["ID"] == item.ID).ToArray();
                 foreach (JToken toRemove in datasToRemove) {
                     datas.Remove(toRemove);
                 }
