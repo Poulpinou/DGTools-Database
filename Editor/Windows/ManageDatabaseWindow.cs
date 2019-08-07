@@ -192,6 +192,7 @@ namespace DGTools.Database.Editor
                 GUILayout.Label("Tables", skin.FindStyle("Title"));
 
                 leftscrollPosition = GUILayout.BeginScrollView(leftscrollPosition);
+                
                 if (schemaBuilder.activeSchema == null)
                 {
                     GUILayout.Label("No Schema found", skin.FindStyle("Italic"));
@@ -212,7 +213,11 @@ namespace DGTools.Database.Editor
                             }
                         }
                         else {
-                            schemaBuilder.activeSchema.RemoveTableSchema(schema);
+                            GUILayout.BeginHorizontal();
+                            GUILayout.Label("Unknown table");
+                            if(GUILayout.Button("Remove"))
+                                schemaBuilder.activeSchema.RemoveTableSchema(schema);
+                            GUILayout.EndHorizontal();
                         }
                         
                     }
@@ -490,10 +495,22 @@ namespace DGTools.Database.Editor
             if (settings != null)
             {
                 if (schemaBuilder == null)
-                    schemaBuilder = new SchemaBuilder(settings);
+                {
+                    try
+                    {
+                        schemaBuilder = new SchemaBuilder(settings);
+                    }
+                    catch (Exception e)
+                    {
+                        log = e.Message;
+                    }
+                }
 
-                if (GUILayout.Button("Schema")) activeWindow = WindowType.Schema;
-                if (GUILayout.Button("Explore")) activeWindow = WindowType.Explore;
+                if (schemaBuilder != null)
+                {
+                    if (GUILayout.Button("Schema")) activeWindow = WindowType.Schema;
+                    if (GUILayout.Button("Explore")) activeWindow = WindowType.Explore;
+                }
             }
             GUILayout.EndHorizontal();
 

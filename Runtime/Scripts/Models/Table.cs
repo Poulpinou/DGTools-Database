@@ -83,7 +83,11 @@ namespace DGTools.Database
         /// <param name="ID">The ID to test</param>
         public bool IDExists(int ID)
         {
-            return datas.Where(d => (int)d["ID"] == ID).FirstOrDefault() != null;
+            return datas.Count(d => (int)d["ID"] == ID) > 0;
+        }
+
+        public bool IsUnique(string key, string value) {
+            return datas.Count(d => (string)d[key] == value) == 0;
         }
 
         /// <summary>
@@ -190,7 +194,10 @@ namespace DGTools.Database
 
             if (IDExists(item.ID))
             {
-                datas.Remove(item.ID.ToString());
+                JToken[] datasToRemove = datas.Where(t => (int)t["ID"] == item.ID).ToArray();
+                foreach (JToken toRemove in datasToRemove) {
+                    datas.Remove(toRemove);
+                }
             }
 
             datas.Add(itemDatas);

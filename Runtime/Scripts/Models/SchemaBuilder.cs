@@ -28,7 +28,14 @@ namespace DGTools.Database
         #region Constructors
         public SchemaBuilder(DatabaseSettings settings)
         {
-            path = Path.Combine(PathUtilities.absolutePath, settings.databaseFolderPath, settings.schemasFolderName);
+            try
+            {
+                path = Path.Combine(PathUtilities.absolutePath, settings.databaseFolderPath, settings.schemasFolderName);
+            }
+            catch {
+                throw new Exception("Invalid path settings");
+            }
+            
             prefix = settings.schemaFilePrefix;
 
             if (!Directory.Exists(path))
@@ -37,9 +44,13 @@ namespace DGTools.Database
             ReloadVersions();
 
             if (availableVersions.Count > 0)
+            {
                 LoadSchema(lastVersion);
+            }
             else
+            {
                 CreateSchemaForCurrentVersion();
+            }
         }
         #endregion
 
@@ -63,6 +74,7 @@ namespace DGTools.Database
             if (activeSchema != null && activeSchema.version == version) return;
 
             activeSchema = new Schema(LoadVersion(version));
+
             ReloadVersions();
         }
 
