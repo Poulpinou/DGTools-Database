@@ -83,7 +83,7 @@ namespace DGTools.Database
         /// <param name="ID">The ID to test</param>
         public bool IDExists(int ID)
         {
-            return datas.Where(d => (int)d["ID"] == ID).FirstOrDefault() != null;
+            return datas.Count(d => (int)d["ID"] == ID) > 0;
         }
 
         /// <summary>
@@ -190,7 +190,9 @@ namespace DGTools.Database
 
             if (IDExists(item.ID))
             {
-                datas.Remove(item.ID.ToString());
+                foreach (JToken toRemove in datas.Where(t => (int)t["ID"] == item.ID)) {
+                    datas.Remove(toRemove);
+                }
             }
 
             datas.Add(itemDatas);
