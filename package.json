@@ -1,7 +1,7 @@
 {
   "name": "com.dgtools.database",
   "displayName": "DGTools Database",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "dependencies": {
     "com.dgtools.core": "0.1.2"
   },
