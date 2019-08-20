@@ -4,6 +4,7 @@ using System;
 using System.IO;
 using Newtonsoft.Json.Linq;
 using System.Linq;
+using System.Reflection;
 
 namespace DGTools.Database
 {
@@ -38,13 +39,14 @@ namespace DGTools.Database
         public static Table Build(TableSchema schema)
         {
             Type type = typeof(Table<>).MakeGenericType(schema.itemType);
-            return GenericsUtilities.Call(type, "Build", null, new TableSchema[] { schema }) as Table;
+            return GenericsUtilities.CallInnerMethod(type, "Build", null, new TableSchema[] { schema }) as Table;
         }
         #endregion
 
         #region Abstract Methods
         public abstract void SaveTable();
         public abstract void LoadTable();
+        public abstract object GetOneObjectByID(int ID);
         #endregion
     }
 
@@ -132,6 +134,11 @@ namespace DGTools.Database
             return GetOne(t => (int)t["ID"] == ID);
         }
 
+        public override object GetOneObjectByID(int ID)
+        {
+            return GetOneByID(ID);
+        }
+
         /// <summary>
         /// Returns the first item that match the filter from the database
         /// </summary>
@@ -144,7 +151,9 @@ namespace DGTools.Database
         /// <returns>The item loaded from database</returns>
         public Titem GetOne(Func<JToken, bool> filter)
         {
-            return LoadItem(ApplyFilter(filter).FirstOrDefault());
+            JToken datas = ApplyFilter(filter).FirstOrDefault();
+            if (datas == null) return default;
+            return LoadItem(datas);
         }
 
         /// <summary>
@@ -174,7 +183,12 @@ namespace DGTools.Database
         /// <returns>The loaded item</returns>
         public Titem LoadItem(JToken itemDatas)
         {
-            return Unserialize(itemDatas);
+            Titem item = new Titem();
+            
+            item.Populate(itemDatas.ToString());
+
+            return item;
+            //return Unserialize(itemDatas);
         }
 
         /// <summary>
@@ -190,7 +204,8 @@ namespace DGTools.Database
                 return;
             }
 
-            JObject itemDatas = Serialize(item);
+            //JObject itemDatas = Serialize(item);
+            JObject itemDatas = JObject.Parse(item.Serialize());
 
             if (IDExists(item.ID))
             {
@@ -236,90 +251,6 @@ namespace DGTools.Database
             if (objectType == typeof(Vector2)) return new Vector2().FromString(datas.Value<string>());
 
             return datas.ToObject(objectType);
-        }
-
-        JObject Serialize(Titem item)
-        {
-            JObject itemDatas = new JObject();
-
-            foreach (TableField field in schema.fields)
-            {
-                if (field.fieldType is IDatabasable)
-                {
-                    if (field.isProperty)
-                        itemDatas.Add(field.fieldName + "_ID", ValueToString(field.fieldType.GetProperty("ID").GetValue(item)));
-                    else
-                        itemDatas.Add(field.fieldName + "_ID", ValueToString(field.fieldType.GetField("ID").GetValue(item)));
-                }
-                else
-                {
-                    if (field.isProperty)
-                        itemDatas.Add(field.fieldName, ValueToString(item.GetType().GetProperty(field.fieldName).GetValue(item)));
-                    else
-                        itemDatas.Add(field.fieldName, ValueToString(item.GetType().GetField(field.fieldName).GetValue(item)));
-                }
-            }
-            return itemDatas;
-        }
-
-        Titem Unserialize(JToken itemDatas)
-        {
-            Titem item = new Titem();
-            foreach (JProperty itemData in itemDatas.Children())
-            {
-                TableField field = schema.GetFieldByName(itemData.Name);
-                if (field != null)
-                {
-                    if (itemData.Value != null)
-                    {
-                        object value = null;
-                        try
-                        {
-                            value =  DataToObject(itemData.Value, field.fieldType);
-                        }
-                        catch(Exception e)
-                        {
-                            Debug.Log(string.Format("{0} type is not supported by database : {1}", field.fieldType, e.Message));
-                            continue;
-                        }
-
-                        if (field.fieldType is IDatabasable)
-                        {
-                            /* TODO Load Linked Items
-                            IDatabasable linkedItem = default;
-                            IEnumerator<IDatabasable> loading = 
-                            while (loading.MoveNext())
-                            {
-                                linkedItem = loading.Current;
-                                yield return default;
-                            }
-
-                            if (field.isProperty)
-                            {
-                                typeof(Titem).GetProperty(field.fieldName).SetValue(item, linkedItem);
-                            }
-                            else
-                            {
-                                typeof(Titem).GetField(field.fieldName).SetValue(item, linkedItem);
-                            }*/
-                        }
-                        else
-                        {
-                            if (field.isProperty)
-                                typeof(Titem).GetProperty(field.fieldName).SetValue(item, value);
-                            else
-                                typeof(Titem).GetField(field.fieldName).SetValue(item, value);
-                        }
-                    }
-                    else
-                    {
-                        Debug.Log(string.Format("Failed to load {0}({1}) field from {2} in {3}", field.fieldName, field.fieldType, itemDatas, typeof(Titem)));
-                        continue;
-                    }
-                }
-            }
-
-            return item;
         }
         #endregion
 

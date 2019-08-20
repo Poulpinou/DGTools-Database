@@ -1,4 +1,6 @@
-﻿namespace DGTools.Database {
+﻿using Newtonsoft.Json;
+
+namespace DGTools.Database {
     /// <summary>
     /// Implement this interface to allow an object to be stored in <see cref="Database"/>
     /// </summary>
@@ -31,6 +33,32 @@
             GetTable(item).SaveItem(item);
             if(saveTable)
                 GetTable(item).SaveTable();
+        }
+
+        public static void Create<Titem>(this Titem item, bool saveTable = true) where Titem : IDatabasable, new()
+        {
+            GetTable(item).CreateItem(item);
+            if (saveTable)
+                GetTable(item).SaveTable();
+        }
+
+        public static string Serialize<Titem>(this Titem item) where Titem : IDatabasable
+        {
+            return JsonConvert.SerializeObject(item, Formatting.Indented,
+                new JsonSerializerSettings()
+                {
+                    ContractResolver = new DatabaseContractResolver()
+                }
+            );
+        }
+
+        public static void Populate<Titem>(this Titem item, string datas) where Titem : IDatabasable {
+            JsonConvert.PopulateObject(datas, item,
+                new JsonSerializerSettings()
+                {
+                    ContractResolver = new DatabaseContractResolver()
+                }
+            );
         }
     }
 }
